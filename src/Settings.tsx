@@ -3,7 +3,7 @@ import { React } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
 import { useProxy } from "@vendetta/storage";
 import { Forms, General } from "@vendetta/ui/components";
-import { updateRPC } from "./index"; // Import the update function
+import { updateRPC } from "./index"; // Import update function
 
 const { View, ScrollView } = General;
 const { FormInput, FormRow, FormSwitch, FormSection, FormDivider } = Forms;
@@ -13,7 +13,7 @@ export default function SettingsPage(): JSX.Element {
 
   return (
     <ScrollView>
-      <FormSection title="Custom RPC">
+      <FormSection title="CustomRPC - Rich Presence">
         <FormInput
           title="Game Name"
           value={storage.rpcTitle}
@@ -65,7 +65,7 @@ export default function SettingsPage(): JSX.Element {
         />
 
         <FormRow
-          label="Show Timestamps"
+          label="Show Start Timestamp"
           trailing={
             <FormSwitch
               value={storage.rpcStartTimestamp}
@@ -90,38 +90,40 @@ export default function SettingsPage(): JSX.Element {
           }
         />
 
-        {storage.rpcButtons.map((button, index) => (
-          <View key={index}>
-            <FormRow
-              label={`Button ${index + 1}`}
-              subLabel={button.label}
-              trailing={
-                <FormSwitch
-                  value={true}
-                  onValueChange={() => {
-                    storage.rpcButtons.splice(index, 1);
-                    updateRPC();
-                  }}
-                />
-              }
-            />
-            <FormDivider />
-          </View>
-        ))}
+        <FormSection title="Custom Buttons">
+          {storage.rpcButtons.map((button, index) => (
+            <View key={index}>
+              <FormRow
+                label={`Button ${index + 1}`}
+                subLabel={button.label}
+                trailing={
+                  <FormSwitch
+                    value={true}
+                    onValueChange={() => {
+                      storage.rpcButtons.splice(index, 1);
+                      updateRPC();
+                    }}
+                  />
+                }
+              />
+              <FormDivider />
+            </View>
+          ))}
 
-        <FormInput
-          title="Add Button Label"
-          placeholder="e.g., Join Beta"
-          onSubmitEditing={({ nativeEvent }) => {
-            if (nativeEvent.text) {
-              storage.rpcButtons.push({ label: nativeEvent.text, url: "#" });
-              updateRPC();
-            }
-          }}
-        />
+          <FormInput
+            title="Add Button Label"
+            placeholder="e.g., Join Beta"
+            onSubmitEditing={({ nativeEvent }) => {
+              if (nativeEvent.text) {
+                storage.rpcButtons.push({ label: nativeEvent.text, url: "#" });
+                updateRPC();
+              }
+            }}
+          />
+        </FormSection>
 
         <FormRow
-          label="Clear Custom RPC"
+          label="Clear CustomRPC"
           onPress={() => {
             storage.rpcTitle = "";
             storage.rpcDetails = "";
