@@ -46,5 +46,3 @@ registerSettings("customrpc-settings", SettingsPage);
 // Plugin Lifecycle Hooks
 export const onLoad = (): void => {};
 export const onUnload = (): void => setCustomStatus(null);
-
-
