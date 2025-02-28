@@ -1,7 +1,7 @@
 import { storage } from "@vendetta/plugin";
 import { findByProps } from "@vendetta/metro";
 import { registerSettings } from "@vendetta/settings";
-import SettingsPage from "./settings"; // Import Settings
+import SettingsPage from "./Settings"; // Import Settings
 
 const { setCustomStatus } = findByProps("setCustomStatus");
 
