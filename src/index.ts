@@ -1,6 +1,5 @@
 import { storage } from "@vendetta/plugin";
 import { findByProps } from "@vendetta/metro";
-import { registerSettings } from "@vendetta/settings";
 import SettingsPage from "./Settings"; // Import Settings
 
 const { setCustomStatus } = findByProps("setCustomStatus");
@@ -46,3 +45,8 @@ registerSettings("customrpc-settings", SettingsPage);
 // Plugin Lifecycle Hooks
 export const onLoad = (): void => {};
 export const onUnload = (): void => setCustomStatus(null);
+export { default as settings } from "./Settings";
+function registerSettings(arg0: string, SettingsPage: () => JSX.Element) {
+  throw new Error("Function not implemented.");
+}
+

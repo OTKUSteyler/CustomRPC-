@@ -1,5 +1,5 @@
 import { storage } from "@vendetta/plugin";
-import { React } from "@vendetta/ui/components";
+import { React } from "@vendetta/metro/common";
 import { showToast } from "@vendetta/ui/toasts";
 import { useProxy } from "@vendetta/storage";
 import { Forms, General } from "@vendetta/ui/components";
